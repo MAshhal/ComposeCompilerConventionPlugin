@@ -16,12 +16,9 @@ class AndroidApplicationComposeConventionPlugin: Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply(libs.plugins.android.application.get().pluginId)
-            pluginManager.apply(libs.plugins.compose.get().pluginId) // Add this line
 
             val extension = extensions.getByType<ApplicationExtension>()
-            val composeExtension = extensions.getByType<ComposeCompilerGradlePluginExtension>() // Add this line
-
-            configureAndroidCompose(extension, composeExtension) // Pass the extension to the function
+            configureAndroidCompose(extension)
         }
     }
 }

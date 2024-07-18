@@ -2,6 +2,9 @@
 
 A guide to implement compose compiler gradle plugin in multi-module project using convention plugins.
 
+Purpose of this was to guide others as I didn't find enough information online regarding this.
+If you're not using convention plugins and wish to migrate, checkout [official documentation](https://developer.android.com/develop/ui/compose/compiler)
+
 > [!IMPORTANT]
 > Before proceeding, make sure your kotlin version is at least 2.0.0
 
@@ -12,16 +15,19 @@ You can follow the guide to migrate as well.
 
 - Add the Compose Compiler & Gradle Plugin in your `libs.versions.toml` file
 ```toml
-In [plugins] block
+[plugins]
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
-In [libraries] block
+[libraries]
 compose-compiler-gradlePlugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
 ```
 - Apply the plugin in your project's `build.gradle.kts` file.
 
 ```kotlin
-alias(libs.plugins.compose) apply false 
+plugins {
+   // Existing plugins
+   alias(libs.plugins.compose) apply false
+}
 ```
 
 - Add the Compose Compiler & Gradle Plugin in your `:build-logic` (convention plugins module) `build.gradle.kts` dependencies block

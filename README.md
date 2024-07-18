@@ -10,19 +10,21 @@ A guide to implement compose compiler gradle plugin in multi-module project usin
 
 You can follow the guide to migrate as well.
 
-- Add the compose compiler gradle plugin in your `libs.versions.toml` file
+- Add the Compose Compiler & Gradle Plugin in your `libs.versions.toml` file
 ```toml
-# In [plugins] block
+In [plugins] block
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+In [libraries] block
+compose-compiler-gradlePlugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
 ```
-- Apply the plugin in your project's build.gradle file.
+- Apply the plugin in your project's `build.gradle.kts` file.
 
 ```kotlin
 alias(libs.plugins.compose) apply false 
 ```
 
-
-- Add the Compose Compiler Gradle Plugin in your :build-logic (convention plugins module) dependencies block
+- Add the Compose Compiler & Gradle Plugin in your `:build-logic` (convention plugins module) `build.gradle.kts` dependencies block
 
 ```kotlin
 compileOnly(libs.compose.compiler.gradlePlugin)
